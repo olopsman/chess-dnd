@@ -2,6 +2,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+install the dependencies
+```bash
+npm install react-dnd react-dnd-html5-backend
+```
+
 First, run the development server:
 
 ```bash

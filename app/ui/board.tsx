@@ -2,6 +2,12 @@ import React from 'react'
 import Knight from "./knight";
 import Square from "./square";
 import { Position } from "../page";
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
+export const ItemTypes = {
+    KNIGHT: 'knight'
+  }
 
 interface BoardProps {
     knightPosition: Position;
@@ -54,8 +60,10 @@ export default function Board(props : BoardProps) {
 
 
   return (
-    <div className='flex flex-wrap'>
-        {squares}
-    </div>
+    <DndProvider backend={HTML5Backend}>
+        <div className='flex flex-wrap'>
+            {squares}
+        </div>
+    </DndProvider>
   )
 }
