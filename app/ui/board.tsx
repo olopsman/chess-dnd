@@ -27,7 +27,7 @@ export default function Board(props : BoardProps) {
     
         return (
         <div key={i} onClick={() => handdleSquareClick(x, y)}>
-            <BoardSquare x={x} y={y} boardProps={props}>
+            <BoardSquare x={x} y={y} canMoveKnight={canMoveKnight} boardProps={props} >
                 {renderPiece(x, y, knightX, knightY)}
             </BoardSquare>
             </div>
