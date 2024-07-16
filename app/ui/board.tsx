@@ -1,6 +1,7 @@
 import React from 'react'
 import Knight from "./knight";
 import Square from "./square";
+import BoardSquare from './board-square';
 import { Position } from "../page";
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -9,7 +10,7 @@ export const ItemTypes = {
     KNIGHT: 'knight'
   }
 
-interface BoardProps {
+export interface BoardProps {
     knightPosition: Position;
     setKnightPosition: React.Dispatch<React.SetStateAction<Position>>;
 }
@@ -23,18 +24,21 @@ export default function Board(props : BoardProps) {
     function renderSquare(i: number, knightX: number, knightY: number) {
         const x = i % 8
         const y = Math.floor(i / 8)
-        const isKnightHere = x === knightX && y === knightY
-        const black = (x + y) % 2 === 1
-        const piece = isKnightHere ? <Knight /> : null
     
         return (
         <div key={i} onClick={() => handdleSquareClick(x, y)}>
-            <Square black={black ? "black" : "white"}>
-                {piece}
-            </Square>
+            <BoardSquare x={x} y={y} boardProps={props}>
+                {renderPiece(x, y, knightX, knightY)}
+            </BoardSquare>
             </div>
         );
     }
+
+    function renderPiece(x: number, y: number, knightX: number, knightY: number) {
+        if (x === knightX && y === knightY) {
+          return <Knight />
+        }
+      }
 
     //handle onclick and set the knight new position
     function handdleSquareClick(toX: number, toY: number) {

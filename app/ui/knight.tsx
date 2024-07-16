@@ -1,14 +1,14 @@
 import React from 'react'
-import { DragSourceMonitor, useDrag } from 'react-dnd'
+import { useDrag } from 'react-dnd'
 import { ItemTypes } from './board'
 
 export default function Knight({}) {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.KNIGHT,
-        collect: (monitor: DragSourceMonitor) => ({
+        collect: (monitor) => ({
           isDragging: !!monitor.isDragging()
         })
-      }))    
+      })) 
   return (
     <div 
     ref={drag}
